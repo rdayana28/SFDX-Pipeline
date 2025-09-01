@@ -3,7 +3,7 @@
     <fullName>test_account_4__c</fullName>
     <label>test account 4</label>
     <precision>18</precision>
-    <required>false</required>
+    <required>true</required>
     <scale>0</scale>
     <trackFeedHistory>false</trackFeedHistory>
     <type>Currency</type>
