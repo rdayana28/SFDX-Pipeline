@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>T57SZ2WJ/9mbFs/QuYjvj8YNbUtROKvpAF4GJ7GGRZg=_3</activeVersionIdentifier>
+    <developerName>knowledge_template</developerName>
+    <masterLabel>knowledge template</masterLabel>
+    <relatedEntity>Account</relatedEntity>
+    <templateVersions>
+        <content> You are an account executive and are tasked with creating a summary of {!$Input:Account.Name} to be used in preparation for an upcoming meeting.
+
+1. Follow Instructions Precisely: Adhere strictly to the provided information without adding extra details or opinions.
+ 2. Use Clear Language: Employ concise, active voice language, avoiding filler words or redundant phrases.
+ 3. Maintain Professionalism: Ensure a neutral and respectful tone throughout the summary.
+
+Wherever the Account Name gets mentioned, hyperlink it to the absolute record URL of the account of the form [/{!$Input:Account.Id}].
+
+For references to objects or records within Salesforce, provide hyperlinks to those objects whenever possible applicable.
+
+The title of the summary should be: {!$Input:Account.Name} Overview
+ * If available, start with the account description from: {!$Input:Account.Description}.
+ * Divide the content into well-labeled sections using emojis.
+
+Include the following sections:
+ 1. Account Overview
+ * Include {!$Input:Account.Description} if available
+ * Mention the industry, regions, customer since date, and general business goals or challenges (if available)
+
+2. {!$Input:Account.Name} Salesforce Opportunities
+ * Use Related List: {!$RelatedList:Account.Opportunities.Records} to get information for these sections. If no opportunities exist, exclude this section.
+
+3. Total Open Pipe
+ * If no opportunities exist, exclude this section.
+ * Calculate and display the total value of open opportunities
+ * For each open opportunity, list: Amount, Close Date, and Associated Products
+
+4. Recently Won Opportunities (Past 1 Year)
+ * If no won opportunities exist, exclude this section.
+ * Sum and display the total amount of won opportunities in the past year.
+ * For each won opportunity, list: Amount, Close Date, Products.
+
+5. Dead Opportunities (Past 1 Year)
+ * If no dead opportunities exist, exclude this section.
+ * Sum and display the total value of dead/lost opportunities in the past year.
+ * For each, include: Amount, Close Date, Products (optional).
+
+Divide the content in sections, add a relevant emoji at the start of each section.
+ Use clear, concise, and straightforward language using the active voice.
+ Do not add any assumptions - only reflect the data from the snapshot.
+
+Now create the Brief - DATA: {!$RecordSnapshot:Account.Snapshot}
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Account</definition>
+            <referenceName>Input:Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Opportunities</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Account.Opportunities.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Account</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>HgL82+uacfW/gDcRYy8DePaXm86eEB9Aw4WSEBWDBd0=_1</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content> You are an account executive and are tasked with creating a summary of {!$Input:Account.Name} to be used in preparation for an upcoming meeting.
+
+1. Follow Instructions Precisely: Adhere strictly to the provided information without adding extra details or opinions.
+ 2. Use Clear Language: Employ concise, active voice language, avoiding filler words or redundant phrases.
+ 3. Maintain Professionalism: Ensure a neutral and respectful tone throughout the summary.
+
+Wherever the Account Name gets mentioned, hyperlink it to the absolute record URL of the account of the form [/{!$Input:Account.Id}].
+
+For references to objects or records within Salesforce, provide hyperlinks to those objects whenever possible applicable.
+
+The title of the summary should be: {!$Input:Account.Name} Overview
+ * If available, start with the account description from: {!$Input:Account.Description}.
+ * Divide the content into well-labeled sections using emojis.
+
+Include the following sections:
+ 1. Account Overview
+ * Include {!$Input:Account.Description} if available
+ * Mention the industry, regions, customer since date, and general business goals or challenges (if available)
+
+2. {!$Input:Account.Name} Salesforce Opportunities
+ * Use Related List: {!$RelatedList:Account.Opportunities.Records} to get information for these sections. If no opportunities exist, exclude this section.
+
+3. Total Open Pipe
+ * If no opportunities exist, exclude this section.
+ * Calculate and display the total value of open opportunities
+ * For each open opportunity, list: Amount, Close Date, and Associated Products
+
+4. Recently Won Opportunities (Past 1 Year)
+ * If no won opportunities exist, exclude this section.
+ * Sum and display the total amount of won opportunities in the past year.
+ * For each won opportunity, list: Amount, Close Date, Products.
+
+5. Dead Opportunities (Past 1 Year)
+ * If no dead opportunities exist, exclude this section.
+ * Sum and display the total value of dead/lost opportunities in the past year.
+ * For each, include: Amount, Close Date, Products (optional).
+
+Divide the content in sections, add a relevant emoji at the start of each section.
+ Use clear, concise, and straightforward language using the active voice.
+ Do not add any assumptions - only reflect the data from the snapshot.
+
+Now create the Brief - DATA: {!$RecordSnapshot:Account.Snapshot}
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Account</definition>
+            <referenceName>Input:Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Opportunities</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Account.Opportunities.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Account</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>T57SZ2WJ/9mbFs/QuYjvj8YNbUtROKvpAF4GJ7GGRZg=_2</versionIdentifier>
+    </templateVersions>
+    <templateVersions>
+        <content> You are an account executive and are tasked with creating a summary of {!$Input:Account.Name} to be used in preparation for an upcoming meeting.
+
+1. Follow Instructions Precisely: Adhere strictly to the provided information without adding extra details or opinions.
+ 2. Use Clear Language: Employ concise, active voice language, avoiding filler words or redundant phrases.
+ 3. Maintain Professionalism: Ensure a neutral and respectful tone throughout the summary.
+
+Wherever the Account Name gets mentioned, hyperlink it to the absolute record URL of the account of the form [/{!$Input:Account.Id}].
+
+For references to objects or records within Salesforce, provide hyperlinks to those objects whenever possible applicable.
+
+The title of the summary should be: {!$Input:Account.Name} Overview
+ * If available, start with the account description from: {!$Input:Account.Description}.
+ * Divide the content into well-labeled sections using emojis.
+
+Include the following sections:
+ 1. Account Overview
+ * Include {!$Input:Account.Description} if available
+ * Mention the industry, regions, customer since date, and general business goals or challenges (if available)
+
+2. {!$Input:Account.Name} Salesforce Opportunities
+ * Use Related List: {!$RelatedList:Account.Opportunities.Records} to get information for these sections. If no opportunities exist, exclude this section.
+
+3. Total Open Pipe
+ * If no opportunities exist, exclude this section.
+ * Calculate and display the total value of open opportunities
+ * For each open opportunity, list: Amount, Close Date, and Associated Products
+
+4. Recently Won Opportunities (Past 1 Year)
+ * If no won opportunities exist, exclude this section.
+ * Sum and display the total amount of won opportunities in the past year.
+ * For each won opportunity, list: Amount, Close Date, Products.
+
+5. Dead Opportunities (Past 1 Year)
+ * If no dead opportunities exist, exclude this section.
+ * Sum and display the total value of dead/lost opportunities in the past year.
+ * For each, include: Amount, Close Date, Products (optional).
+
+Divide the content in sections, add a relevant emoji at the start of each section.
+ Use clear, concise, and straightforward language using the active voice.
+ Do not add any assumptions - only reflect the data from the snapshot.
+
+Now create the Brief - DATA: {!$RecordSnapshot:Account.Snapshot}
+</content>
+        <inputs>
+            <apiName>objectToSummarize</apiName>
+            <definition>SOBJECT://Account</definition>
+            <referenceName>Input:Account</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4</primaryModel>
+        <status>Published</status>
+        <templateDataProviders>
+            <definition>invocable://getRelatedList</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>parentRecordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>relatedListName</parameterName>
+                <valueExpression>Opportunities</valueExpression>
+            </parameters>
+            <referenceName>RelatedList:Account.Opportunities.Records</referenceName>
+        </templateDataProviders>
+        <templateDataProviders>
+            <definition>invocable://getDataForGrounding</definition>
+            <parameters>
+                <definition>primitive://String</definition>
+                <isRequired>true</isRequired>
+                <parameterName>recordId</parameterName>
+                <valueExpression>{!$Input:Account.Id}</valueExpression>
+            </parameters>
+            <referenceName>RecordSnapshot:Account</referenceName>
+        </templateDataProviders>
+        <versionIdentifier>T57SZ2WJ/9mbFs/QuYjvj8YNbUtROKvpAF4GJ7GGRZg=_3</versionIdentifier>
+    </templateVersions>
+    <type>einstein_gpt__recordSummary</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
