@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPromptTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionIdentifier>T57SZ2WJ/9mbFs/QuYjvj8YNbUtROKvpAF4GJ7GGRZg=_1</activeVersionIdentifier>
+    <developerName>Case_Agent_Analysis</developerName>
+    <masterLabel>Case Agent Analysis</masterLabel>
+    <templateVersions>
+        <content>Hi This is my first test case agent propt template....
+</content>
+        <inputs>
+            <apiName>ChatTranscript</apiName>
+            <definition>primitive://String</definition>
+            <referenceName>Input:ChatTranscript</referenceName>
+            <required>true</required>
+        </inputs>
+        <primaryModel>sfdc_ai__DefaultOpenAIGPT4OmniMini</primaryModel>
+        <status>Published</status>
+        <versionIdentifier>T57SZ2WJ/9mbFs/QuYjvj8YNbUtROKvpAF4GJ7GGRZg=_1</versionIdentifier>
+    </templateVersions>
+    <type>SvcCopilotTmpl__createCaseWithEnhancedData</type>
+    <visibility>Global</visibility>
+</GenAiPromptTemplate>
